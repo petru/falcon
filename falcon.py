@@ -28,14 +28,14 @@ def hello():
 @app.route("/falcon/api/message", methods=['POST'])
 def process_request():
     req = {
-        'who':request.json['user_name'],
-        'text':request.json['text'],
-        'bot':bool(request.json['bot']),
-        'channel':request.json['channel_id']
+        'who': request.json['user_name'],
+        'text': request.json['text'],
+        'bot': bool(request.json['bot']),
+        'channel': request.json['channel_id']
     }
     print(req)
     event_handler(req)
-    return 200
+    return 'OK', 200
 
 def simple_reply(channel, message):
     api.send_message(message, channel)
