@@ -105,3 +105,6 @@ venv.bak/
 
 # local test database
 testy.db
+
+# specific import script
+import.py
