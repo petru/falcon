@@ -11,6 +11,7 @@ load_dotenv(verbose=True)
 ROCKET_CHAT_DOMAIN=os.getenv("ROCKET_CHAT_DOMAIN")
 ROCKET_CHAT_USERNAME=os.getenv("ROCKET_CHAT_USERNAME")
 ROCKET_CHAT_PASSWORD=os.getenv("ROCKET_CHAT_PASSWORD")
+WEBHOOK_TOKEN=os.getenv("WEBHOOK_TOKEN")
 
 # establish API link
 api = RocketChatAPI(settings={
@@ -31,10 +32,12 @@ def process_request():
         'who': request.json['user_name'],
         'text': request.json['text'],
         'bot': bool(request.json['bot']),
-        'channel': request.json['channel_id']
+        'channel': request.json['channel_id'],
+        'token': request.json['token']
     }
     print(req)
-    event_handler(req)
+    if req['token'] == WEBHOOK_TOKEN:
+        event_handler(req)
     return 'OK', 200
 
 def simple_reply(channel, message):
