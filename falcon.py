@@ -69,7 +69,7 @@ def event_handler(event):
             simple_reply(c, "Not found")
         else:
             for i in range(0,len(r)):
-                simple_reply(c,"```"+r[i][0]+"```")
+                simple_reply(c,"```\n"+r[i][0]+"\n```")
 
     # add definition
     elif m[0] == '++' and len(m[1]) > 0 and len(m[2])>0:
